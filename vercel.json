@@ -3,7 +3,7 @@
   "name": "aviator-game",
   "buildCommand": "pnpm --filter @workspace/aviator-game run build",
   "outputDirectory": "artifacts/aviator-game/dist/public",
-  "installCommand": "pnpm install --frozen-lockfile",
+  "installCommand": "pnpm install",
   "framework": null,
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
