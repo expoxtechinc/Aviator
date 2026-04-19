@@ -42,6 +42,7 @@ export function AviatorGame() {
     balance, roundId, autoCashout1, autoCashout2,
     autoBet, autoBetAmount, autoCashoutAuto,
     totalWon, totalLost, totalProfit, peakMultiplier,
+    playerCount, streak,
   } = state;
 
   const total = totalWon + totalLost;
@@ -144,35 +145,56 @@ export function AviatorGame() {
         )}
       </div>
 
+      {/* Streak indicator */}
+      {(streak >= 3 || streak <= -2) && (
+        <div
+          className="px-3 py-2 rounded-xl text-xs font-bold text-center"
+          style={{
+            background: streak >= 3
+              ? 'rgba(251,191,36,0.12)'
+              : 'rgba(34,197,94,0.12)',
+            border: `1px solid ${streak >= 3 ? 'rgba(251,191,36,0.3)' : 'rgba(34,197,94,0.3)'}`,
+            color: streak >= 3 ? '#fbbf24' : '#22c55e',
+          }}
+        >
+          {streak >= 5
+            ? `⚠️ ${streak} crashes under 2x in a row — a big round is overdue!`
+            : streak >= 3
+              ? `🔥 ${streak} low crashes in a row — tension building...`
+              : streak <= -3
+                ? `🌕 ${Math.abs(streak)} big multipliers in a row — ride the streak!`
+                : `✨ ${Math.abs(streak)} high rounds in a row — hot streak!`}
+        </div>
+      )}
+
       {/* Stats strip */}
       <div
-        className="flex items-center justify-between px-4 py-2.5 rounded-2xl"
+        className="flex items-center justify-between px-3 py-2.5 rounded-2xl"
         style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}
       >
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
+          {/* Player count */}
+          {playerCount > 0 && (
+            <div className="flex-shrink-0">
+              <div className="text-xs text-muted-foreground leading-none">Players</div>
+              <div className="text-sm font-black leading-tight text-foreground">{playerCount}</div>
+            </div>
+          )}
           {[
-            { label: 'Balance', value: `$${balance.toFixed(2)}`, color: '#ff5f1f' },
-            { label: 'Wins', value: String(totalWon), color: '#22c55e' },
-            { label: 'Losses', value: String(totalLost), color: '#ef4444' },
-            ...(total > 0 ? [{ label: 'Win%', value: `${winRate}%`, color: 'rgba(255,255,255,0.5)' }] : []),
+            { label: 'W', value: String(totalWon), color: '#22c55e' },
+            { label: 'L', value: String(totalLost), color: '#ef4444' },
+            ...(total > 0 ? [{ label: 'Win%', value: `${winRate}%`, color: 'rgba(255,255,255,0.6)' }] : []),
+            ...(totalProfit !== 0 ? [{ label: 'P/L', value: `${totalProfit >= 0 ? '+' : ''}$${Math.abs(totalProfit).toFixed(0)}`, color: totalProfit >= 0 ? '#22c55e' : '#ef4444' }] : []),
           ].map((s, i) => (
-            <div key={i}>
+            <div key={i} className="flex-shrink-0">
               <div className="text-xs text-muted-foreground leading-none">{s.label}</div>
               <div className="text-sm font-black leading-tight" style={{ color: s.color }}>{s.value}</div>
             </div>
           ))}
-          {totalProfit !== 0 && (
-            <div>
-              <div className="text-xs text-muted-foreground leading-none">Profit</div>
-              <div className="text-sm font-black leading-tight" style={{ color: totalProfit >= 0 ? '#22c55e' : '#ef4444' }}>
-                {totalProfit >= 0 ? '+' : ''}{totalProfit.toFixed(2)}
-              </div>
-            </div>
-          )}
         </div>
         <button
           onClick={() => actions.addBalance(1000)}
-          className="px-3 py-1.5 rounded-lg text-xs font-bold transition-all hover:opacity-80 active:scale-95"
+          className="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-bold transition-all hover:opacity-80 active:scale-95"
           style={{ background: 'rgba(255,95,31,0.2)', border: '1px solid rgba(255,95,31,0.4)', color: '#ff5f1f' }}
         >
           +$1000
