@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useGameState } from '../hooks/useGameState';
 import { useLeaderboard } from '../hooks/useLeaderboard';
 import { useChat } from '../hooks/useChat';
+import { useSound } from '../hooks/useSound';
 import { CrashGraph } from '../components/CrashGraph';
 import { MultiplierDisplay } from '../components/MultiplierDisplay';
 import { Plane } from '../components/Plane';
@@ -15,6 +16,7 @@ import { RoundHistory } from '../components/RoundHistory';
 import { ProvablyFair } from '../components/ProvablyFair';
 import { HistoryBar } from '../components/HistoryBar';
 import { Stars } from '../components/Stars';
+import { WhatsAppWidget } from '../components/WhatsAppWidget';
 
 type Tab = 'bet' | 'auto' | 'bets' | 'chat' | 'board' | 'stats' | 'history' | 'fair';
 
@@ -35,6 +37,7 @@ export function AviatorGame() {
   const { messages, sendMessage } = useChat(state.phase, state.bet1.cashedOut, state.bet1.active ? state.bet1.amount : null);
   const [tab, setTab] = useState<Tab>('bet');
   const [soundOn, setSoundOn] = useState(false);
+  const sound = useSound(soundOn);
 
   const {
     phase, multiplier, crashPoint, countdown,
@@ -44,6 +47,67 @@ export function AviatorGame() {
     totalWon, totalLost, totalProfit, peakMultiplier,
     playerCount, streak,
   } = state;
+
+  // Sound effects wired to game events
+  const prevPhaseRef = useRef<typeof phase>('waiting');
+  const prevCountdownRef = useRef(7);
+  const prevBet1CashedOut = useRef<number | null>(null);
+  const prevBet2CashedOut = useRef<number | null>(null);
+
+  useEffect(() => {
+    // Phase transitions
+    if (prevPhaseRef.current === 'waiting' && phase === 'flying') {
+      sound.play('fly_start');
+      sound.startEngine();
+    }
+    if (phase === 'crashed' && prevPhaseRef.current === 'flying') {
+      sound.stopEngine();
+      sound.play('crash');
+    }
+    if (phase === 'waiting' && prevPhaseRef.current === 'crashed') {
+      // silence
+    }
+    prevPhaseRef.current = phase;
+  }, [phase, sound]);
+
+  useEffect(() => {
+    // Update engine pitch with multiplier
+    if (phase === 'flying') {
+      sound.updateEngine(multiplier);
+    }
+  }, [multiplier, phase, sound]);
+
+  useEffect(() => {
+    // Countdown beeps (last 3 seconds)
+    if (phase === 'waiting' && countdown <= 3 && countdown < prevCountdownRef.current) {
+      sound.play('countdown');
+    }
+    prevCountdownRef.current = countdown;
+  }, [countdown, phase, sound]);
+
+  useEffect(() => {
+    if (bet1.cashedOut && bet1.cashedOut !== prevBet1CashedOut.current) {
+      prevBet1CashedOut.current = bet1.cashedOut;
+      if (bet1.cashedOut >= 5) sound.play('win_big');
+      else sound.play('cashout');
+    }
+    if (!bet1.cashedOut) prevBet1CashedOut.current = null;
+  }, [bet1.cashedOut, sound]);
+
+  useEffect(() => {
+    if (bet2.cashedOut && bet2.cashedOut !== prevBet2CashedOut.current) {
+      prevBet2CashedOut.current = bet2.cashedOut;
+      if (bet2.cashedOut >= 5) sound.play('win_big');
+      else sound.play('cashout');
+    }
+    if (!bet2.cashedOut) prevBet2CashedOut.current = null;
+  }, [bet2.cashedOut, sound]);
+
+  // Wrapped actions that also play sounds
+  const placeBet1WithSound = () => { sound.play('bet'); actions.placeBet1(); };
+  const placeBet2WithSound = () => { sound.play('bet'); actions.placeBet2(); };
+  const cashOut1WithSound = () => { actions.cashOut1(); };
+  const cashOut2WithSound = () => { actions.cashOut2(); };
 
   const total = totalWon + totalLost;
   const winRate = total > 0 ? Math.round((totalWon / total) * 100) : 0;
@@ -254,9 +318,9 @@ export function AviatorGame() {
               balance={balance}
               autoCashout={autoCashout1}
               color="#ff5f1f"
-              onPlaceBet={actions.placeBet1}
+              onPlaceBet={placeBet1WithSound}
               onCancelBet={actions.cancelBet1}
-              onCashOut={actions.cashOut1}
+              onCashOut={cashOut1WithSound}
               onSetBetAmount={actions.setBet1Amount}
               onSetAutoCashout={actions.setAutoCashout1}
             />
@@ -270,9 +334,9 @@ export function AviatorGame() {
                 balance={balance}
                 autoCashout={autoCashout2}
                 color="#06b6d4"
-                onPlaceBet={actions.placeBet2}
+                onPlaceBet={placeBet2WithSound}
                 onCancelBet={actions.cancelBet2}
-                onCashOut={actions.cashOut2}
+                onCashOut={cashOut2WithSound}
                 onSetBetAmount={actions.setBet2Amount}
                 onSetAutoCashout={actions.setAutoCashout2}
               />
@@ -365,10 +429,13 @@ export function AviatorGame() {
       )}
 
       {/* Footer */}
-      <div className="flex items-center justify-center gap-3 pb-2">
+      <div className="flex items-center justify-center gap-3 pb-16">
         <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
         <span className="text-xs text-muted-foreground">Free-to-play demo — no real money</span>
       </div>
+
+      {/* WhatsApp floating widget */}
+      <WhatsAppWidget />
     </div>
   );
 }
