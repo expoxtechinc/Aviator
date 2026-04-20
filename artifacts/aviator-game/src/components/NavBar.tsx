@@ -27,35 +27,34 @@ export function NavBar() {
       >
         <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/">
-            <a className="flex items-center gap-2 no-underline">
-              <div
-                className="w-8 h-8 rounded-xl flex items-center justify-center text-sm font-black"
-                style={{ background: 'linear-gradient(135deg, #ff5f1f, #dc2626)', boxShadow: '0 0 16px rgba(255,95,31,0.4)' }}
-              >
-                ✈
-              </div>
-              <div>
-                <div className="font-black text-sm leading-none" style={{ color: '#ff5f1f' }}>ExpoXTech</div>
-                <div className="text-xs text-muted-foreground leading-none">Gaming & Opportunities</div>
-              </div>
-            </a>
+          <Link href="/" className="flex items-center gap-2 no-underline">
+            <div
+              className="w-8 h-8 rounded-xl flex items-center justify-center text-sm font-black"
+              style={{ background: 'linear-gradient(135deg, #ff5f1f, #dc2626)', boxShadow: '0 0 16px rgba(255,95,31,0.4)' }}
+            >
+              ✈
+            </div>
+            <div>
+              <div className="font-black text-sm leading-none" style={{ color: '#ff5f1f' }}>ExpoXTech</div>
+              <div className="text-xs text-muted-foreground leading-none">Gaming & Opportunities</div>
+            </div>
           </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-1">
             {LINKS.map(l => (
-              <Link key={l.href} href={l.href}>
-                <a
-                  className="px-3 py-1.5 rounded-lg text-xs font-semibold transition-all no-underline"
-                  style={{
-                    background: location === l.href ? 'rgba(255,95,31,0.2)' : 'transparent',
-                    color: location === l.href ? '#ff5f1f' : 'rgba(255,255,255,0.6)',
-                    border: location === l.href ? '1px solid rgba(255,95,31,0.35)' : '1px solid transparent',
-                  }}
-                >
-                  {l.emoji} {l.label}
-                </a>
+              <Link
+                key={l.href}
+                href={l.href}
+                className="px-3 py-1.5 rounded-lg text-xs font-semibold transition-all no-underline"
+                style={{
+                  background: location === l.href ? 'rgba(255,95,31,0.2)' : 'transparent',
+                  color: location === l.href ? '#ff5f1f' : 'rgba(255,255,255,0.6)',
+                  border: location === l.href ? '1px solid rgba(255,95,31,0.35)' : '1px solid transparent',
+                  display: 'inline-block',
+                }}
+              >
+                {l.emoji} {l.label}
               </Link>
             ))}
           </nav>
@@ -101,19 +100,20 @@ export function NavBar() {
               </div>
             </div>
             {LINKS.map(l => (
-              <Link key={l.href} href={l.href}>
-                <a
-                  className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold no-underline transition-all"
-                  style={{
-                    background: location === l.href ? 'rgba(255,95,31,0.15)' : 'rgba(255,255,255,0.04)',
-                    color: location === l.href ? '#ff5f1f' : 'rgba(255,255,255,0.7)',
-                    border: location === l.href ? '1px solid rgba(255,95,31,0.3)' : '1px solid rgba(255,255,255,0.06)',
-                  }}
-                  onClick={() => setOpen(false)}
-                >
-                  <span className="text-xl">{l.emoji}</span>
-                  {l.label}
-                </a>
+              <Link
+                key={l.href}
+                href={l.href}
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold no-underline transition-all"
+                style={{
+                  background: location === l.href ? 'rgba(255,95,31,0.15)' : 'rgba(255,255,255,0.04)',
+                  color: location === l.href ? '#ff5f1f' : 'rgba(255,255,255,0.7)',
+                  border: location === l.href ? '1px solid rgba(255,95,31,0.3)' : '1px solid rgba(255,255,255,0.06)',
+                  display: 'flex',
+                }}
+                onClick={() => setOpen(false)}
+              >
+                <span className="text-xl">{l.emoji}</span>
+                {l.label}
               </Link>
             ))}
           </div>
