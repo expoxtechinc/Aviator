@@ -87,7 +87,7 @@ export function GameCard({ game, size = 'md' }: GameCardProps) {
   );
 
   if (isPlayable) {
-    return <Link href={href}><a className="no-underline">{CardContent}</a></Link>;
+    return <Link href={href} className="no-underline" style={{ display: 'block' }}>{CardContent}</Link>;
   }
 
   return CardContent;
