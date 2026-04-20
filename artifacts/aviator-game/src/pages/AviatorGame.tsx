@@ -16,7 +16,6 @@ import { RoundHistory } from '../components/RoundHistory';
 import { ProvablyFair } from '../components/ProvablyFair';
 import { HistoryBar } from '../components/HistoryBar';
 import { Stars } from '../components/Stars';
-import { WhatsAppWidget } from '../components/WhatsAppWidget';
 
 type Tab = 'bet' | 'auto' | 'bets' | 'chat' | 'board' | 'stats' | 'history' | 'fair';
 
@@ -429,13 +428,10 @@ export function AviatorGame() {
       )}
 
       {/* Footer */}
-      <div className="flex items-center justify-center gap-3 pb-16">
+      <div className="flex items-center justify-center gap-3 pb-4">
         <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
         <span className="text-xs text-muted-foreground">Free-to-play demo — no real money</span>
       </div>
-
-      {/* WhatsApp floating widget */}
-      <WhatsAppWidget />
     </div>
   );
 }
