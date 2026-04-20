@@ -26,8 +26,8 @@ export function Footer() {
             ['/scholarships', 'Scholarships 🇱🇷'],
             ['/visas', 'Free Visas ✈️'],
           ].map(([href, label]) => (
-            <Link key={href} href={href}>
-              <a className="hover:text-foreground transition-colors no-underline">{label}</a>
+            <Link key={href} href={href} className="hover:text-foreground transition-colors no-underline">
+              {label}
             </Link>
           ))}
         </div>
