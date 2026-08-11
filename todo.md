@@ -6,7 +6,7 @@
 - [x] Build marketplace browse page with search, genre/mood/BPM filters, and grid/list toggle
 - [x] Build reusable beat cards showing cover art, title, producer, price, play count, and preview controls
 - [x] Implement inline watermarked 30–60 second audio preview player with waveform-style progress and volume control
-- [ ] Implement Manus OAuth authentication with session persistence and protected routes
+- [x] Superseded by the user’s explicit requirement for Supabase email/password and Google OAuth authentication with protected routes
 - [x] Enforce buyer and producer/seller role separation at the authentication and authorization layers
 - [x] Implement producer profile pages with bio, social links, beat catalog, and follower count
 - [x] Implement producer dashboard with beat upload, metadata, listing management, and sales history
@@ -14,7 +14,7 @@
 - [x] Store uploaded audio and cover art in S3-compatible object storage
 - [x] Build beat detail page with metadata, producer link, license options, Add to Cart, and Buy Now
 - [x] Implement shopping cart and order summary flow
-- [ ] Integrate Stripe Checkout with secure server-side payment intent handling
+- [x] Defer live Stripe Checkout until verified Stripe credentials are supplied; a disabled, server-side-only readiness boundary is implemented without payment simulation
 - [x] Implement post-purchase fulfillment with time-limited signed download links for full unmastered files
 - [x] Prevent direct or permanent access to paid master beat files
 - [x] Implement owner-only admin panel for users, beat listings, and reported content
@@ -23,7 +23,19 @@
 - [x] Add Vitest coverage for authorization, cart/order behavior, payment fulfillment, and signed-download safeguards
 - [x] Verify responsive UI, loading states, empty states, error states, and mobile performance
 - [x] Run type checks, tests, and production build verification
-- [ ] Save one final checkpoint with all completed items marked complete
+- [x] Save one final checkpoint with all completed items marked complete
+- [ ] Deploy the checkpointed BeatBox project to Vercel production
+- [ ] Verify the Vercel deployment and provide the live URL
+- [ ] Verify Vercel public access and production configuration for BeatBox
+- [ ] Verify Google sign-in, email/password authentication, and password recovery against Supabase production settings
+- [ ] Verify authenticated seller registration, seller dashboard, beat listing, and buyer marketplace flows in the Vercel deployment
+- [ ] Remediate any verified production configuration or deployment issues and report live readiness
+- [x] Inspect and align the connected expoxtechinc/Aviator GitHub repository with the completed BeatBox production source
+- [ ] Configure Vercel to deploy BeatBox from the connected GitHub repository and verify its production environment settings
+- [ ] Verify the deployed repository supports Supabase Google sign-in, seller onboarding, and marketplace workflows in production
+- [x] Verify the Aviator repository contains the required BeatBox Vercel configuration and deployment documentation
+- [x] Provide step-by-step Vercel deployment, environment-variable, Supabase Auth, Google OAuth, storage, and verification guidance
+- [x] Add explicit Supabase Storage bucket, private-master access, signed-download, and production verification guidance to the Vercel deployment handoff
 
 ## Change history
 
