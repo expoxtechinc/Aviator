@@ -16,3 +16,15 @@ export const supabase = createClient(supabaseUrl, supabasePublishableKey, {
 });
 
 export const BEATBOX_LOGO_URL = "https://cdn.phototourl.com/free/2026-08-11-b48b27bd-a5a9-4363-9b97-eacdce958524.png";
+
+/** Logs only structured Supabase error metadata during local development. */
+export function logSupabaseError(operation: string, error: unknown) {
+  if (!import.meta.env.DEV || !error || typeof error !== "object") return;
+  const candidate = error as { code?: string; message?: string; details?: string; hint?: string };
+  console.error(`[BeatBox:${operation}]`, {
+    code: candidate.code,
+    message: candidate.message,
+    details: candidate.details,
+    hint: candidate.hint,
+  });
+}

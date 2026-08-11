@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabase";
+import { logSupabaseError, supabase } from "@/lib/supabase";
 import type { Profile, UserRole } from "@/lib/models";
 import type { Session, User } from "@supabase/supabase-js";
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
@@ -38,17 +38,17 @@ export function SupabaseAuthProvider({ children }: { children: React.ReactNode }
 
     let { data, error } = await supabase.from("profiles").select("*").eq("id", authUser.id).maybeSingle();
     if (!data && !error) {
-      const { error: insertError } = await supabase.from("profiles").upsert({
-        id: authUser.id,
-        email: authUser.email ?? null,
-        display_name: profileName(authUser),
-        username: profileUsername(authUser),
-        role: "buyer" as UserRole,
-      });
-      if (insertError) throw insertError;
+      const { error: ensureError } = await supabase.rpc("ensure_self_profile");
+      if (ensureError) {
+        logSupabaseError("ensure-profile", ensureError);
+        throw ensureError;
+      }
       ({ data, error } = await supabase.from("profiles").select("*").eq("id", authUser.id).maybeSingle());
     }
-    if (error) throw error;
+    if (error) {
+      logSupabaseError("load-profile", error);
+      throw error;
+    }
     setProfile((data as Profile | null) ?? null);
   }, []);
 
@@ -110,10 +110,13 @@ export function SupabaseAuthProvider({ children }: { children: React.ReactNode }
       },
       becomeSeller: async () => {
         if (!session?.user) throw new Error("Sign in to become a seller.");
-        const { error } = await supabase.rpc("promote_self_to_seller", {
+        const { error } = await supabase.rpc("register_as_seller", {
           producer_name_input: profile?.display_name || profileName(session.user),
         });
-        if (error) throw error;
+        if (error) {
+          logSupabaseError("register-seller", error);
+          throw error;
+        }
         await refreshProfile();
       },
       refreshProfile,

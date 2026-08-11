@@ -37,6 +37,17 @@
 - [x] Provide step-by-step Vercel deployment, environment-variable, Supabase Auth, Google OAuth, storage, and verification guidance
 - [x] Add explicit Supabase Storage bucket, private-master access, signed-download, and production verification guidance to the Vercel deployment handoff
 - [x] Add detailed Vercel and Supabase production troubleshooting and recovery guidance to the deployment handoff
+- [x] Inspect the live BeatBox Supabase client, Google/auth session flow, profile mutations, seller-registration code, schema, triggers, and RLS policies without modifying authentication
+- [x] Diagnose the actual database and application causes of profile-save and seller-registration failures using the existing BeatBox Supabase project
+- [x] Fix authenticated self-profile updates with ownership-safe RLS policies, durable local-state refresh, and development-safe Supabase error logging
+- [x] Fix immediate, idempotent self-service seller registration without seller approval or self-assigned administrative privileges
+- [x] Verify profile persistence, seller persistence, duplicate prevention, profile ownership isolation, and admin-role protection through automated and connector-backed checks
+- [x] Demonstrate a safe Supabase connector data query and document its available BeatBox administration capabilities
+- [x] Commit the completed non-deployment repair to expoxtechinc/Aviator and report exact root causes, files, policies, tests, and remaining issues
+- [x] Run an authenticated connector-backed verification of profile-save and seller-registration behavior, including persistence, duplicate handling, and admin-role protection
+- [x] Add a committed BeatBox operations note documenting safe Supabase connector verification queries and available administration capabilities
+- [x] Commit the operations runbook and related profile/seller repair files to the Aviator repository and synchronize the managed project state
+- [x] Deliver the completed repair report with root causes, verification results, commit reference, and Vercel deployment steps
 
 ## Change history
 
