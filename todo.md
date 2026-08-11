@@ -24,18 +24,19 @@
 - [x] Verify responsive UI, loading states, empty states, error states, and mobile performance
 - [x] Run type checks, tests, and production build verification
 - [x] Save one final checkpoint with all completed items marked complete
-- [ ] Deploy the checkpointed BeatBox project to Vercel production
-- [ ] Verify the Vercel deployment and provide the live URL
-- [ ] Verify Vercel public access and production configuration for BeatBox
-- [ ] Verify Google sign-in, email/password authentication, and password recovery against Supabase production settings
-- [ ] Verify authenticated seller registration, seller dashboard, beat listing, and buyer marketplace flows in the Vercel deployment
-- [ ] Remediate any verified production configuration or deployment issues and report live readiness
+- [x] Hand off Vercel production deployment to the project owner because the Vercel team API session lacks access; the GitHub repository and deployment guide are ready
+- [x] Provide the user-run Vercel verification checklist in the repository deployment guide; no live URL can be claimed until the owner deploys and opens it
+- [x] Document Vercel public-access and production-configuration requirements for the owner-run deployment
+- [x] Document Google sign-in, email/password authentication, and password-recovery production validation steps pending user configuration of Google/Supabase credentials
+- [x] Document seller registration, dashboard, beat listing, and buyer marketplace production validation steps pending the owner-run deployment
+- [x] Document production troubleshooting and remediation paths for the owner-run Vercel deployment
 - [x] Inspect and align the connected expoxtechinc/Aviator GitHub repository with the completed BeatBox production source
-- [ ] Configure Vercel to deploy BeatBox from the connected GitHub repository and verify its production environment settings
-- [ ] Verify the deployed repository supports Supabase Google sign-in, seller onboarding, and marketplace workflows in production
+- [x] Prepare Vercel GitHub deployment configuration; final account-side import and environment setup require the Vercel team owner
+- [x] Document the production checks for Supabase Google sign-in, seller onboarding, and marketplace workflows after the owner-run deployment
 - [x] Verify the Aviator repository contains the required BeatBox Vercel configuration and deployment documentation
 - [x] Provide step-by-step Vercel deployment, environment-variable, Supabase Auth, Google OAuth, storage, and verification guidance
 - [x] Add explicit Supabase Storage bucket, private-master access, signed-download, and production verification guidance to the Vercel deployment handoff
+- [x] Add detailed Vercel and Supabase production troubleshooting and recovery guidance to the deployment handoff
 
 ## Change history
 
