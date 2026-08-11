@@ -5,6 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { defineConfig, type Plugin, type ViteDevServer } from "vite";
 import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
+import { VitePWA } from "vite-plugin-pwa";
 
 // =============================================================================
 // Manus Debug Collector - Vite Plugin
@@ -150,7 +151,25 @@ function vitePluginManusDebugCollector(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector()];
+const plugins = [
+  react(),
+  tailwindcss(),
+  jsxLocPlugin(),
+  vitePluginManusRuntime(),
+  VitePWA({
+    registerType: "autoUpdate",
+    manifest: {
+      name: "BeatBox — Liberia's Beat Marketplace",
+      short_name: "BeatBox",
+      description: "Discover, preview, license, and sell original beats.",
+      theme_color: "#111217",
+      background_color: "#111217",
+      display: "standalone",
+      icons: [{ src: "https://cdn.phototourl.com/free/2026-08-11-b48b27bd-a5a9-4363-9b97-eacdce958524.png", sizes: "512x512", type: "image/png" }],
+    },
+  }),
+  vitePluginManusDebugCollector(),
+];
 
 export default defineConfig({
   plugins,

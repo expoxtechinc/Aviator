@@ -1,0 +1,17 @@
+import { useSupabaseAuth } from "@/contexts/SupabaseAuthContext";
+import { usePageMeta } from "@/hooks/usePageMeta";
+import { Loader2 } from "lucide-react";
+import { useState } from "react";
+import { useLocation } from "wouter";
+
+export default function Auth() {
+  usePageMeta("Sign in", "Sign in or create a BeatBox account to license tracks, save favorites, and sell your beats.");
+  const { signIn, signUp, signInWithGoogle, resetPassword, user } = useSupabaseAuth();
+  const [, setLocation] = useLocation();
+  const [mode, setMode] = useState<"signin" | "signup" | "reset">("signin");
+  const [name, setName] = useState(""); const [email, setEmail] = useState(""); const [password, setPassword] = useState(""); const [message, setMessage] = useState<string | null>(null); const [busy, setBusy] = useState(false);
+  if (user) { setLocation("/account"); return null; }
+  const submit = async (event: React.FormEvent) => { event.preventDefault(); setBusy(true); setMessage(null); try { if (mode === "signin") { await signIn(email, password); setLocation("/account"); } else if (mode === "signup") { await signUp(name, email, password); setMessage("Check your email to confirm your BeatBox account, then return to sign in."); } else { await resetPassword(email); setMessage("Password reset instructions were sent if that email is registered."); } } catch (error) { setMessage(error instanceof Error ? error.message : "Unable to continue."); } finally { setBusy(false); } };
+  const label = mode === "signin" ? "Welcome back" : mode === "signup" ? "Make more room for your sound" : "Reset your password";
+  return <section className="auth-page"><div className="auth-card"><p className="eyebrow"><span /> BeatBox account</p><h1>{label}</h1><p className="auth-card__lede">{mode === "signin" ? "Access your collection, requests, and secure downloads." : mode === "signup" ? "Create a free buyer account. You can become a seller at any time—no approval queue." : "We’ll email a secure reset link."}</p><button className="oauth-button" type="button" onClick={() => void signInWithGoogle()} disabled={busy}><span>G</span> Continue with Google</button><div className="auth-divider"><span>or use email</span></div><form onSubmit={submit}>{mode === "signup" && <label>Display name<input value={name} onChange={event => setName(event.target.value)} required minLength={2} /></label>}<label>Email<input type="email" value={email} onChange={event => setEmail(event.target.value)} required autoComplete="email" /></label>{mode !== "reset" && <label>Password<input type="password" value={password} onChange={event => setPassword(event.target.value)} required minLength={8} autoComplete={mode === "signin" ? "current-password" : "new-password"} /></label>}<button className="button auth-card__submit" disabled={busy} type="submit">{busy && <Loader2 className="spin" size={16} />}{mode === "signin" ? "Sign in" : mode === "signup" ? "Create account" : "Send reset link"}</button></form>{message && <p className={message.startsWith("Check") || message.startsWith("Password") ? "form-success" : "form-error"}>{message}</p>}<div className="auth-card__links">{mode !== "signin" && <button type="button" onClick={() => setMode("signin")}>Already have an account? Sign in</button>}{mode !== "signup" && <button type="button" onClick={() => setMode("signup")}>New to BeatBox? Create an account</button>}{mode !== "reset" && <button type="button" onClick={() => setMode("reset")}>Forgot password?</button>}</div></div></section>;
+}

@@ -1,20 +1,52 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/NotFound";
+import { MarketplaceShell } from "@/components/MarketplaceShell";
+import { lazy, Suspense } from "react";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import Home from "./pages/Home";
+
+const Home = lazy(() => import("./pages/Home"));
+const Explore = lazy(() => import("@/pages/Explore"));
+const BeatDetail = lazy(() => import("@/pages/BeatDetail"));
+const Producers = lazy(async () => ({ default: (await import("@/pages/Producer")).Producers }));
+const Producer = lazy(() => import("@/pages/Producer"));
+const Auth = lazy(() => import("@/pages/Auth"));
+const AuthCallback = lazy(() => import("@/pages/AuthCallback"));
+const Cart = lazy(() => import("@/pages/Cart"));
+const Account = lazy(async () => ({ default: (await import("@/pages/Dashboards")).Account }));
+const Favorites = lazy(async () => ({ default: (await import("@/pages/Dashboards")).Favorites }));
+const Seller = lazy(async () => ({ default: (await import("@/pages/Dashboards")).Seller }));
+const Admin = lazy(async () => ({ default: (await import("@/pages/Dashboards")).Admin }));
+const Info = lazy(() => import("@/pages/Info"));
+const NotFound = lazy(() => import("@/pages/NotFound"));
 
 function Router() {
-  // make sure to consider if you need authentication for certain routes
   return (
-    <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
-      <Route component={NotFound} />
-    </Switch>
+    <MarketplaceShell>
+      <Suspense fallback={<section className="status-page"><div className="loading-dots" aria-label="Loading BeatBox" /><p>Loading BeatBox…</p></section>}>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/explore" component={Explore} />
+        <Route path="/beats/:slug" component={BeatDetail} />
+        <Route path="/producers" component={Producers} />
+        <Route path="/producers/:id" component={Producer} />
+        <Route path="/auth" component={Auth} />
+        <Route path="/auth/callback" component={AuthCallback} />
+        <Route path="/cart" component={Cart} />
+        <Route path="/account" component={Account} />
+        <Route path="/favorites" component={Favorites} />
+        <Route path="/seller" component={Seller} />
+        <Route path="/admin" component={Admin} />
+        <Route path="/help" component={Info} />
+        <Route path="/terms" component={Info} />
+        <Route path="/privacy" component={Info} />
+        <Route path="/contact" component={Info} />
+        <Route path="/404" component={NotFound} />
+        <Route component={NotFound} />
+      </Switch>
+      </Suspense>
+    </MarketplaceShell>
   );
 }
 
@@ -26,10 +58,7 @@ function Router() {
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider
-        defaultTheme="light"
-        // switchable
-      >
+      <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
           <Router />

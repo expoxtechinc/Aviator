@@ -1,0 +1,11 @@
+import { supabase } from "@/lib/supabase";
+import { CheckCircle2, KeyRound, Loader2 } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useLocation } from "wouter";
+
+export default function AuthCallback() {
+  const [, setLocation] = useLocation(); const [status, setStatus] = useState("Finalizing your secure sign-in…"); const [recovery, setRecovery] = useState(false); const [password, setPassword] = useState(""); const [busy, setBusy] = useState(false);
+  useEffect(() => { const run = async () => { const params = new URLSearchParams(window.location.search); const code = params.get("code"); const isRecovery = params.get("mode") === "recovery"; if (code) { const { error } = await supabase.auth.exchangeCodeForSession(code); if (error) setStatus(error.message); else if (isRecovery) { setRecovery(true); setStatus("Create a new BeatBox password."); } else { setStatus("Signed in. Taking you to BeatBox…"); setTimeout(() => setLocation("/account"), 800); } } else if (isRecovery) { setRecovery(true); setStatus("Create a new BeatBox password."); } else { setStatus("Your email link has been processed. You can return to your BeatBox account."); } }; void run(); }, [setLocation]);
+  const updatePassword = async (event: React.FormEvent) => { event.preventDefault(); if (password.length < 8) { setStatus("Use a password with at least 8 characters."); return; } setBusy(true); const { error } = await supabase.auth.updateUser({ password }); setBusy(false); if (error) { setStatus(error.message); return; } setStatus("Password updated. Taking you to your account…"); setTimeout(() => setLocation("/account"), 900); };
+  return <section className="status-page"><div><CheckCircle2 size={36} /><h1>BeatBox account</h1><p>{status}</p>{recovery ? <form className="auth-form" onSubmit={updatePassword}><label>New password<input type="password" value={password} onChange={event => setPassword(event.target.value)} minLength={8} autoComplete="new-password" required /></label><button className="button" disabled={busy}>{busy ? <Loader2 className="spin" size={16} /> : <KeyRound size={16} />}Update password</button></form> : <Loader2 className="spin" size={18} />}</div></section>;
+}

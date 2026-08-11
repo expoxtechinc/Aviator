@@ -1,0 +1,5 @@
+{
+  "project_id": "huhsbpjdwepovtjraxsd",
+  "name": "beatbox_trigger_search_path",
+  "query": "-- BeatBox final trigger hardening: all referenced app objects are schema-qualified.\nalter function public.handle_new_user() set search_path = '';\n"
+}
