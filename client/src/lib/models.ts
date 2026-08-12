@@ -8,6 +8,15 @@ export type Profile = {
   bio: string | null;
   email: string | null;
   country: string | null;
+  city?: string | null;
+  website_url?: string | null;
+  profession?: string | null;
+  education?: string | null;
+  interests?: string | null;
+  cover_url?: string | null;
+  social_links?: Record<string, string> | null;
+  privacy_settings?: Record<string, boolean> | null;
+  contact_preferences?: Record<string, boolean> | null;
   role: UserRole | null;
   account_status: "active" | "suspended" | "banned" | null;
 };
