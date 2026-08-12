@@ -288,18 +288,18 @@
 - [x] Add truthful support/contact destinations for WhatsApp, email, and Facebook without using them as credentials
 - [x] Implement real one-to-one private messaging with conversations, search, unread/read state, message persistence, and Supabase Realtime where supported
 - [x] Add secure private-message image, audio, video, document, and link attachments with private storage policies and signed access
-- [ ] Add message reactions, replies, delete-own, copy, block, report, and honest unsupported-state handling where advanced realtime is unavailable
+- [x] Add message reactions, replies, delete-own, copy, block, report, and honest unsupported-state handling where advanced realtime is unavailable
 - [x] Expand persistent Feed reactions beyond like to love, haha, wow, sad, and angry with accessible reaction picker and counts
-- [ ] Ensure music publishing uses the uploaded track directly for playback without requiring duplicate preview/original uploads
-- [ ] Verify free, paid, and stream-only music playback/download entitlement boundaries with real media controls
+- [x] Ensure music publishing uses the uploaded track directly for playback without requiring duplicate preview/original uploads
+- [x] Verify free, paid, and stream-only music playback/download entitlement boundaries with real media controls
 - [ ] Complete dedicated Video/Reels experience with vertical scrolling, autoplay policy handling, mute, fullscreen, progress, reactions, comments, share, save, report, and follow
-- [ ] Ensure Creator Studio publishes creator videos using the uploaded file directly with title, caption, category, tags, visibility, and monetization settings
+- [x] Ensure Creator Studio publishes creator videos using the uploaded file directly with title, caption, category, tags, visibility, and monetization settings
 - [ ] Add internal sharing for posts, media, products, beats, music, videos, and creator profiles with private-content protection
-- [ ] Complete Creator Studio sections for Music, Videos, Beats, Products, Services, Earnings, Payment Methods, Orders, Analytics, Advertisements, Profile, and Settings
+- [x] Complete Creator Studio sections for Music, Videos, Beats, Products, Services, Earnings, Payment Methods, Orders, Analytics, Advertisements, Profile, and Settings
 - [ ] Add lightweight Creator Studio analytics dashboard for beat plays and profile views using persisted analytics data
 - [ ] Verify product/service fields for seller payment methods, delivery, location, stock, availability, sharing, saving, and truthful purchase/contact actions
 - [ ] Verify advertising creation and admin moderation flow without charging when no verified payment provider is configured
-- [ ] Harden unified public search for users, usernames, posts, music, beats, videos, products, services, and hashtags with indexed safe queries
+- [x] Harden unified public search for users, usernames, posts, music, beats, videos, products, services, and hashtags with indexed safe queries
 - [ ] Upgrade Feed shell with search, notifications, messages, profile/menu, creator highlights, recommendations, and marketplace highlights where existing data supports them
 - [x] Audit all profile, post, reaction, follower, message, media, music, video, product, order, payment, report, notification, and admin RLS policies
 - [ ] Complete notification coverage for messages, reactions, replies, mentions, reposts, follows, payments, orders, seller activity, admin warnings, and report status
