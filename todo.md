@@ -119,3 +119,21 @@
 
 - [x] Run authenticated or rollback-only Supabase verification for new content publishing, community/social actions with media, and product-order request flows; capture and commit the verification results/documentation
 - [x] Commit and push the completed extension changes to expoxtechinc/Aviator, save a new BeatBox checkpoint for the extension state, and add a user-facing report with the exact final commit hash
+
+## AI assistant and Vercel configuration
+
+- [x] Inspect the current BeatBox server, client, routing, and test architecture for a secure AI integration boundary
+- [x] Add server-only provider environment configuration without hardcoding or committing credentials
+- [x] Add multi-provider AI routing with ordered fallback, timeout, retry, and provider health status
+- [x] Add a protected BeatBox AI bot endpoint and user interface connected to approved marketplace context
+- [x] Add tests proving secrets are not exposed, provider failures fall back safely, and unauthorized requests are rejected
+- [x] Validate type checks, tests, production build, and Vercel-compatible runtime configuration
+- [x] Save a checkpoint and provide owner-controlled Vercel publishing steps; do not publish directly
+
+## AI verification gap remediation
+
+- [x] Inspect the actual AI router implementation and add explicit tests for provider order, timeout handling, retry behavior, and health metadata
+- [x] Add runtime-level authentication coverage proving unauthenticated AI requests are rejected by the tRPC route
+- [x] Re-run the full AI and BeatBox validation suite after the new coverage passes
+
+- [x] Add an explicit AI router timeout-behavior test that triggers failover after a hanging provider and rerun tests, type checks, and production build
