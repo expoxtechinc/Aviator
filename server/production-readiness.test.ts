@@ -8,7 +8,7 @@ describe("BeatBox production readiness contracts", () => {
     const app = read("client/src/App.tsx");
     const catalog = read("client/src/pages/MarketCatalog.tsx");
     const meta = read("client/src/hooks/usePageMeta.ts");
-    for (const route of ["/discover", "/categories", "/trending", "/new-releases", "/free-downloads", "/paid-content", "/products"]) expect(app).toContain(route);
+    for (const route of ["/feed", "/community", "/discover", "/categories", "/trending", "/new-releases", "/free-downloads", "/paid-content", "/products"]) expect(app).toContain(route);
     expect(catalog).toContain("content_items");
     expect(meta).toContain("canonical");
   });
@@ -18,12 +18,17 @@ describe("BeatBox production readiness contracts", () => {
     for (const table of ["social_posts", "social_post_likes", "social_post_comments", "social_reposts", "social_post_bookmarks", "producer_follows", "social_friend_requests", "social_blocks", "social_mutes", "reports"]) expect(community).toContain(table);
     expect(community).toContain("createSignedUrl");
     expect(community).toContain("profiles!social_posts_author_id_fkey");
+    expect(community).toContain("getFeedRange(page, pageSize)");
+    expect(community).toContain('.eq("status", "published")');
   });
 
   it("preserves pending manual-payment and entitlement-controlled fulfillment", () => {
     const catalog = read("client/src/pages/MarketCatalog.tsx");
     const studio = read("client/src/pages/CreatorHub.tsx");
     const download = read("supabase/functions/secure-download/index.ts");
+    expect(studio).toContain('from("social_posts")');
+    expect(studio).toContain("content_id: publishedContent.id");
+    expect(studio).toContain("shareToFeed");
     expect(catalog).toContain('status: "pending"');
     expect(catalog).toContain("Payment remains pending");
     expect(studio).toContain("seller_payment_methods");

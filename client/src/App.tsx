@@ -41,6 +41,7 @@ function Router() {
         <Route path="/account" component={Account} />
         <Route path="/favorites" component={Favorites} />
         <Route path="/seller" component={Seller} />
+        <Route path="/feed" component={Community} />
         <Route path="/community" component={Community} />
         <Route path="/catalog" component={MarketCatalog} />
         <Route path="/discover" component={MarketCatalog} />

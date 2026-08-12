@@ -11,8 +11,12 @@ describe("Vercel production contract", () => {
     expect(config.installCommand).toContain("pnpm install --frozen-lockfile");
     expect(config.outputDirectory).toBe("dist/public");
     expect(config.rewrites).toEqual(expect.arrayContaining([
+      expect.objectContaining({ source: "/api/trpc/:path*", destination: "/api/trpc/[trpc].ts" }),
       expect.objectContaining({ source: "/(.*)", destination: "/index.html" }),
     ]));
+    const clientTransport = fs.readFileSync(path.join(root, "client/src/main.tsx"), "utf8");
+    expect(clientTransport).toContain("content-type");
+    expect(clientTransport).toContain("BeatBox AI endpoint is unavailable in this deployment.");
   });
 
   it("keeps the tRPC function and SEO assets in the deployable source", () => {

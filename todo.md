@@ -1,5 +1,21 @@
 # BeatBox Project TODO
 
+## pasted_content_8 production continuation
+
+- [ ] Fix Vercel production `/api/trpc` routing so AI requests reach the serverless handler instead of the SPA 404
+- [x] Add resilient AI client/API error handling that never blindly parses invalid JSON and preserves server-only provider secrets
+- [ ] Redeploy the updated Vercel routing and verify the live AI health endpoint returns JSON from `api/trpc/[trpc].ts`
+- [ ] Verify the real production AI health and authenticated chat paths after redeployment
+- [x] Add a first-class `/feed` public route and Feed navigation while preserving `/community`
+- [x] Extend the persisted Supabase Feed to reference published marketplace content without duplicating protected media
+- [x] Add public Feed pagination, privacy-safe content queries, empty state, mobile layout, and persistent interactions
+- [x] Add explicit initial loading and error UI for Feed queries and signed-media failures
+- [x] Add behavior-level Feed tests for visibility, pagination, content references, privacy, and interactions
+- [x] Add a verifiable catalog deep-link/query-param path for Feed content references
+- [x] Add Feed integration tests for public visibility, content references, privacy, and interaction persistence
+- [x] Run final AI/Feed tests, typecheck, production build, and mobile visual checks
+- [ ] Complete post-deployment production endpoint and authenticated AI smoke checks
+
 - [x] Use the official BeatBox logo URL exactly as provided throughout branded UI: https://cdn.phototourl.com/free/2026-08-11-b48b27bd-a5a9-4363-9b97-eacdce958524.png
 - [x] Set BeatBox product naming and browser metadata consistently across the application
 - [x] Build responsive landing page with hero, featured beats carousel, and top producers showcase

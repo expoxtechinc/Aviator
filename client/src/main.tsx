@@ -13,7 +13,23 @@ const trpcClient = trpc.createClient({
     httpBatchLink({
       transformer: superjson,
       url: `${window.location.origin}/api/trpc`,
-      fetch: (url, options) => fetch(url, { ...options, credentials: "include" }),
+      fetch: async (url, options) => {
+        const response = await fetch(url, { ...options, credentials: "include" });
+        const contentType = response.headers.get("content-type") || "";
+        if (contentType.includes("application/json")) return response;
+        const responseText = await response.text();
+        const message = response.status === 401
+          ? "Please sign in again to use BeatBox AI."
+          : response.status >= 500
+            ? "BeatBox AI is temporarily unavailable. Please try again shortly."
+            : responseText.includes("<!doctype html") || responseText.includes("<html")
+              ? "BeatBox AI endpoint is unavailable in this deployment."
+              : "BeatBox AI returned an invalid response.";
+        return new Response(JSON.stringify({ error: { json: { message } } }), {
+          status: response.ok ? 502 : (response.status || 502),
+          headers: { "content-type": "application/json" },
+        });
+      },
     }),
   ],
 });
