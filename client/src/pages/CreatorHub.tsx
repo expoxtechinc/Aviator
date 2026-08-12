@@ -3,11 +3,11 @@ import AdsPanel from "@/components/AdsPanel";
 import EarningsPanel from "@/components/EarningsPanel";
 import type { AccessMode, ContentType, Product, SellerEarning } from "@/lib/models";
 import { supabase } from "@/lib/supabase";
-import { BarChart3, Box, DollarSign, FileAudio, Loader2, Megaphone, Plus, Save, ShieldCheck, Upload, WalletCards } from "lucide-react";
+import { BarChart3, Box, ClipboardList, DollarSign, FileAudio, Gauge, Loader2, Megaphone, Plus, Save, Settings2, ShieldCheck, Upload, WalletCards } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "wouter";
 
-type Tab = "publish" | "payments" | "products" | "ads" | "earnings";
+type Tab = "overview" | "publish" | "content" | "payments" | "products" | "orders" | "ads" | "earnings" | "analytics" | "settings";
 const slugify = (value: string) => `${value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}-${Date.now().toString(36)}`;
 const money = (amount: number | null | undefined, currency = "USD") => new Intl.NumberFormat(undefined, { style: "currency", currency }).format(amount || 0);
 
@@ -25,16 +25,23 @@ export default function CreatorHub() {
 
 function CreatorHubInner() {
   const { user, profile } = useSupabaseAuth();
-  const [tab, setTab] = useState<Tab>("publish");
+  const [tab, setTab] = useState<Tab>("overview");
   const tabs = useMemo(() => [
+    ["overview", "Overview", <Gauge size={16} />],
     ["publish", "Publish", <FileAudio size={16} />],
-    ["payments", "Payment methods", <WalletCards size={16} />],
+    ["content", "Content", <FileAudio size={16} />],
+    ["payments", "Payments", <WalletCards size={16} />],
     ["products", "Products", <Box size={16} />],
-    ["ads", "Advertise", <Megaphone size={16} />],
+    ["orders", "Orders", <ClipboardList size={16} />],
+    ["ads", "Advertising", <Megaphone size={16} />],
     ["earnings", "Earnings", <BarChart3 size={16} />],
+    ["analytics", "Analytics", <DollarSign size={16} />],
+    ["settings", "Settings", <Settings2 size={16} />],
   ] as const, []);
-  return <section className="dashboard-page"><div className="container"><div className="dashboard-title"><div><p className="eyebrow"><span /> Creator studio</p><h1>{profile?.display_name || "Producer"} control room</h1></div><Link className="button button--small" href="/community">Open community</Link></div><div className="dashboard-tabs">{tabs.map(([key, label, icon]) => <button key={key} className={tab === key ? "is-active" : ""} onClick={() => setTab(key)}>{icon}{label}</button>)}</div>{tab === "publish" && user && <PublishContent sellerId={user.id} sellerName={profile?.display_name || "BeatBox creator"} />}{tab === "payments" && user && <PaymentMethods sellerId={user.id} />}{tab === "products" && user && <ProductsPanel sellerId={user.id} />}{tab === "ads" && user && <AdsPanel advertiserId={user.id} />}{tab === "earnings" && user && <EarningsPanel sellerId={user.id} />}</div></section>;
+  return <section className="dashboard-page"><div className="container"><div className="dashboard-title"><div><p className="eyebrow"><span /> Creator studio</p><h1>{profile?.display_name || "Producer"} control room</h1></div><Link className="button button--small" href="/community">Open community</Link></div><div className="dashboard-tabs">{tabs.map(([key, label, icon]) => <button key={key} className={tab === key ? "is-active" : ""} onClick={() => setTab(key)}>{icon}{label}</button>)}</div>{tab === "overview" && <StudioSectionGuide title="Studio overview" copy="Publish public references, manage products and payment instructions, review earnings, and keep advertising activity truthful and auditable." action="Publish a drop" href="/studio" />}{tab === "publish" && user && <PublishContent sellerId={user.id} sellerName={profile?.display_name || "BeatBox creator"} />}{tab === "content" && <StudioSectionGuide title="Published content" copy="Your audio, video, movie, app, software, and digital-product references appear in the public catalog and Feed." action="Open catalog" href="/catalog" />}{tab === "payments" && user && <PaymentMethods sellerId={user.id} />}{tab === "products" && user && <ProductsPanel sellerId={user.id} />}{tab === "orders" && <StudioSectionGuide title="Orders" copy="Buyer purchase requests and seller fulfillment remain protected by the existing verification workflows." action="Open seller dashboard" href="/seller" />}{tab === "ads" && user && <AdsPanel advertiserId={user.id} />}{tab === "earnings" && user && <EarningsPanel sellerId={user.id} />}{tab === "analytics" && <StudioSectionGuide title="Analytics" copy="Creator engagement and advertising events are available through the existing analytics contracts without exposing private buyer or payment data." action="Open advertising" href="/studio" />}{tab === "settings" && <StudioSectionGuide title="Settings" copy="Update your public profile, seller identity, and account preferences from protected account tools." action="Open account" href="/account" />}</div></section>;
 }
+
+function StudioSectionGuide({ title, copy, action, href }: { title: string; copy: string; action: string; href: string }) { return <div className="dashboard-panel studio-section-guide"><p className="eyebrow"><span /> Creator workspace</p><h2>{title}</h2><p>{copy}</p><Link className="button button--small" href={href}>{action}</Link></div>; }
 
 function PublishContent({ sellerId, sellerName }: { sellerId: string; sellerName: string }) {
   const [form, setForm] = useState({ title: "", description: "", content_type: "audio" as ContentType, access_mode: "paid_download" as AccessMode, price: "", currency: "USD", genre: "", tags: "" });
