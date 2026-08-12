@@ -285,7 +285,7 @@
 - [ ] Expand public profile editing and persistence for cover photo, website, location, country/city, profession, education, interests, social links, contact preferences, creator/seller information, joined date, and privacy controls
 - [ ] Ensure administrator authorization is database/server-side role based and add secure owner-admin association plus audit logging
 - [ ] Expand reporting taxonomy and moderation coverage for users, posts, comments, videos, music, products, and messages
-- [ ] Add truthful support/contact destinations for WhatsApp, email, and Facebook without using them as credentials
+- [x] Add truthful support/contact destinations for WhatsApp, email, and Facebook without using them as credentials
 - [x] Implement real one-to-one private messaging with conversations, search, unread/read state, message persistence, and Supabase Realtime where supported
 - [x] Add secure private-message image, audio, video, document, and link attachments with private storage policies and signed access
 - [ ] Add message reactions, replies, delete-own, copy, block, report, and honest unsupported-state handling where advanced realtime is unavailable
