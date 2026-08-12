@@ -1,8 +1,21 @@
 User-agent: *
 Allow: /
+Allow: /explore
+Allow: /catalog
+Allow: /community
+Allow: /producers
+Allow: /producers/
+Allow: /beats/
 Disallow: /admin
 Disallow: /seller
 Disallow: /account
 Disallow: /cart
+Disallow: /favorites
+Disallow: /auth
+Disallow: /auth/
+Disallow: /studio
+Disallow: /ai
+Disallow: /api/
+Disallow: /storage/
 
-Sitemap: https://beatbox.manus.space/sitemap.xml
+Sitemap: https://beat-box-org.vercel.app/sitemap.xml

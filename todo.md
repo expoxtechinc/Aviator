@@ -137,3 +137,23 @@
 - [x] Re-run the full AI and BeatBox validation suite after the new coverage passes
 
 - [x] Add an explicit AI router timeout-behavior test that triggers failover after a hanging provider and rerun tests, type checks, and production build
+
+## New feedback reconciliation
+
+- [ ] Read both newly attached BeatBox feedback files and extract their explicit requirements
+- [ ] Compare both feedback files for additions, conflicts, priorities, and unchanged requirements
+- [ ] Produce a reconciled implementation specification before changing the BeatBox codebase
+
+## Full production continuation from pasted_content_7
+
+- [ ] Compare the new active-project, repository, production-domain, and Supabase requirements against the existing BeatBox configuration
+- [ ] Verify Google OAuth, email auth, profiles, instant seller registration, seller-owned payment settings, and existing marketplace preservation
+- [ ] Verify complete public publishing flows for beats, music, videos, movies, apps, digital products, and physical products
+- [ ] Verify public Feed, discovery, categories, search, creators, trending, new releases, free downloads, and paid-content routes
+- [ ] Verify persistent social posts, follows, friends, likes, comments, replies, reposts, saves, sharing, notifications, blocks, mutes, reports, and counters
+- [ ] Verify seller payment methods, real Mobile Money and WhatsApp request states, Stripe server-side boundary, unified orders, and entitlement-controlled downloads
+- [ ] Verify advertiser campaigns, creator monetization, dashboards, admin moderation, and audit behavior without fabricated revenue or payment success
+- [ ] Verify exact Google Search Console file, robots.txt, sitemap.xml, canonical/OG/Twitter metadata, structured data, internal links, and private-content noindex rules
+- [ ] Run signed-out, buyer, seller, separate-buyer, and administrator validation plus tests, type checks, linting if configured, production build, and deployment checks
+- [ ] Commit, push, checkpoint, and provide owner-controlled Vercel deployment steps with no secret exposure
+- [x] Implement exact Google verification asset, production robots/sitemap, canonical/OG/Twitter metadata, structured-data hook support, and private-route noindex foundation; add regression coverage and pass tests/typecheck/build
