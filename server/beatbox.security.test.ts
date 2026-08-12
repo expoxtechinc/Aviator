@@ -16,9 +16,13 @@ describe("BeatBox secure download boundary", () => {
     expect(edge).toContain("admin.auth.getUser(token)");
     expect(edge).toContain('.eq("buyer_id", auth.user.id)');
     expect(edge).toContain('["payment_verified", "delivered"]');
-    expect(edge).toContain('if (!beat.is_free)');
-    expect(edge).toContain('createSignedUrl(beat.master_url, 300');
-    expect(edge).toContain('test(beat.master_url)');
+    expect(edge).toContain('if (asset.access_mode === "paid_download")');
+    expect(edge).toContain('from("content_orders")');
+    expect(edge).toContain('createSignedUrl(asset.original_path, 300');
+    expect(edge).toContain('test(data.master_url)');
+    expect(edge).toContain('if (payload.preview)');
+    expect(edge).toContain('from("content-previews")');
+    expect(edge).toContain('if (asset.access_mode === "stream_only")');
   });
 
   it("keeps master delivery behind a JWT-protected Edge Function rather than browser storage access", async () => {

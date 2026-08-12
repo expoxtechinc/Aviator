@@ -70,3 +70,52 @@
 - No fake authentication, fake payments, mock users, or permanent public download URLs.
 - Do not expose secrets in browser code, client bundles, or public environment variables.
 - Do not use Manus, Firebase, Lovable, AI Studio, template, or development branding in the public application.
+
+- [x] Extend seller payment methods with country, currency, holder name, account/contact, instructions, and seller-specific buyer visibility
+- [x] Add protected free, paid-download, and stream-only content modes without exposing private originals
+- [x] Extend publishing to audio, video, and software content types with metadata and secure download behavior
+- [x] Add creator engagement metrics and social interactions for published content
+- [x] Add social feed, follows, friends, blocks, mutes, reports, notifications, and supported post media
+- [x] Add products marketplace for physical, digital, and service listings with seller-linked orders
+- [x] Add advertiser campaigns, creatives, budgets, moderation, and basic analytics
+- [x] Extend seller earnings dashboard with verified payments, fees, transactions, and downloads
+- [x] Validate all new database, RLS, Storage/backend, Edge Function/API, UI, and saved-result flows
+- [x] Run the complete BeatBox test suite, type checks, production build, commit, push, and checkpoint the extension
+- [x] Report the completed extension, preserved functionality, tests, manual configuration, and final commit hash
+
+## Extension change history
+
+- [x] Inventory existing live tables, columns, routines, buckets, policies, and current UI before adding duplicate functionality
+- [x] Reuse the existing seller payment request workflow and secure-download architecture
+- [x] Preserve existing Supabase auth, Google OAuth, RLS, Storage, Edge Functions, Vercel configuration, and BeatBox branding
+- [x] Do not reset production data, create duplicate projects, expose secrets, or make private originals public
+
+## Current extension notes
+
+- [x] Live inventory confirmed existing private buckets: avatars, beat-covers, beat-masters, beat-previews, and payment-proofs
+- [x] Existing seller_payment_methods table and seller-scoped buyer visibility policy confirmed
+- [x] Existing beats table confirmed audio-oriented metadata with is_free, counts, and private master_url
+- [x] Existing payment request and secure-download workflows confirmed in current code and migrations
+- [x] Existing seller dashboard includes payment settings, upload, request review, and verified-sales surfaces
+- [x] Extend only where the current schema and UI are genuinely missing requested functionality
+
+## Extension delivery notes
+
+- [x] No fake payment success, fake reviews, mock customers, or unverified earnings will be introduced
+- [x] Paid/private masters and originals will remain behind signed, entitlement-checked downloads
+- [x] Vercel/Supabase production configuration will remain owner-managed unless explicitly changed by the user
+
+## Extension gap remediation
+
+- [x] Inspect and verify extended seller_payment_methods schema/UI fields for country, currency, holder, account/contact, instructions, and buyer visibility
+- [x] Implement and verify creator publishing UI for audio, video, and software content items with metadata and secure preview/download flows
+- [x] Add notification generation for new community actions and implement post media attachment support in the composer
+- [x] Inspect and verify advertiser campaign, creative, budget, moderation, and analytics code paths
+- [x] Inspect and verify seller earnings dashboard UI/calculations for verified payments, fees, transactions, and downloads
+- [x] Run authenticated end-to-end checks for new content, social, and product flows and document saved-result verification
+- [x] Commit, push, and save a new checkpoint for the extension, then record the final commit hash in the user-facing report
+
+## Final extension verification gaps
+
+- [x] Run authenticated or rollback-only Supabase verification for new content publishing, community/social actions with media, and product-order request flows; capture and commit the verification results/documentation
+- [x] Commit and push the completed extension changes to expoxtechinc/Aviator, save a new BeatBox checkpoint for the extension state, and add a user-facing report with the exact final commit hash

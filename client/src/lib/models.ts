@@ -51,3 +51,77 @@ export type BeatLicense = {
 };
 
 export type Category = { id: string; name: string; slug: string };
+
+export type ContentType = "audio" | "video" | "software";
+export type AccessMode = "free_download" | "paid_download" | "stream_only";
+
+export type ContentItem = {
+  id: string;
+  seller_id: string;
+  title: string;
+  slug: string;
+  description: string | null;
+  content_type: ContentType;
+  cover_path: string | null;
+  preview_path: string | null;
+  original_path: string;
+  price: number;
+  currency: string;
+  access_mode: AccessMode;
+  download_enabled: boolean;
+  genre: string | null;
+  tags: string[];
+  status: string;
+  view_count: number;
+  like_count: number;
+  comment_count: number;
+  share_count: number;
+  download_count: number;
+  created_at: string;
+};
+
+export type SocialPost = {
+  id: string;
+  author_id: string;
+  body: string | null;
+  content_id: string | null;
+  media_path: string | null;
+  media_type: "image" | "audio" | "video" | null;
+  link_url: string | null;
+  status: string;
+  like_count: number;
+  comment_count: number;
+  share_count: number;
+  created_at: string;
+  profiles?: { display_name: string | null; avatar_url: string | null } | null;
+};
+
+export type Product = {
+  id: string;
+  seller_id: string;
+  product_type: "physical" | "digital" | "service";
+  title: string;
+  slug: string;
+  description: string | null;
+  price: number;
+  currency: string;
+  stock: number | null;
+  location: string | null;
+  delivery_information: string | null;
+  file_path: string | null;
+  status: string;
+  created_at: string;
+};
+
+export type SellerEarning = {
+  order_id: string;
+  seller_id: string;
+  beat_id: string;
+  amount: number;
+  platform_fee_amount: number;
+  seller_amount: number;
+  currency: string;
+  status: string;
+  verified_at: string | null;
+  created_at: string;
+};

@@ -18,6 +18,9 @@ const Account = lazy(async () => ({ default: (await import("@/pages/Dashboards")
 const Favorites = lazy(async () => ({ default: (await import("@/pages/Dashboards")).Favorites }));
 const Seller = lazy(async () => ({ default: (await import("@/pages/Dashboards")).Seller }));
 const Admin = lazy(async () => ({ default: (await import("@/pages/Dashboards")).Admin }));
+const Community = lazy(() => import("@/pages/Community"));
+const MarketCatalog = lazy(() => import("@/pages/MarketCatalog"));
+const CreatorHub = lazy(() => import("@/pages/CreatorHub"));
 const Info = lazy(() => import("@/pages/Info"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
@@ -37,6 +40,9 @@ function Router() {
         <Route path="/account" component={Account} />
         <Route path="/favorites" component={Favorites} />
         <Route path="/seller" component={Seller} />
+        <Route path="/community" component={Community} />
+        <Route path="/catalog" component={MarketCatalog} />
+        <Route path="/studio" component={CreatorHub} />
         <Route path="/admin" component={Admin} />
         <Route path="/help" component={Info} />
         <Route path="/terms" component={Info} />
