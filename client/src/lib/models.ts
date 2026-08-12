@@ -52,7 +52,7 @@ export type BeatLicense = {
 
 export type Category = { id: string; name: string; slug: string };
 
-export type ContentType = "audio" | "video" | "software";
+export type ContentType = "audio" | "video" | "movie" | "software" | "app" | "digital_product";
 export type AccessMode = "free_download" | "paid_download" | "stream_only";
 
 export type ContentItem = {

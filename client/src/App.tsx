@@ -43,6 +43,13 @@ function Router() {
         <Route path="/seller" component={Seller} />
         <Route path="/community" component={Community} />
         <Route path="/catalog" component={MarketCatalog} />
+        <Route path="/discover" component={MarketCatalog} />
+        <Route path="/categories" component={MarketCatalog} />
+        <Route path="/trending" component={MarketCatalog} />
+        <Route path="/new-releases" component={MarketCatalog} />
+        <Route path="/free-downloads" component={MarketCatalog} />
+        <Route path="/paid-content" component={MarketCatalog} />
+        <Route path="/products" component={MarketCatalog} />
         <Route path="/studio" component={CreatorHub} />
         <Route path="/ai" component={AI} />
         <Route path="/admin" component={Admin} />

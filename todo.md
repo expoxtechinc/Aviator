@@ -140,13 +140,13 @@
 
 ## New feedback reconciliation
 
-- [ ] Read both newly attached BeatBox feedback files and extract their explicit requirements
-- [ ] Compare both feedback files for additions, conflicts, priorities, and unchanged requirements
-- [ ] Produce a reconciled implementation specification before changing the BeatBox codebase
+- [x] Read both newly attached BeatBox feedback files and extract their explicit requirements
+- [x] Compare both feedback files for additions, conflicts, priorities, and unchanged requirements
+- [x] Produce a reconciled implementation specification before changing the BeatBox codebase
 
 ## Full production continuation from pasted_content_7
 
-- [ ] Compare the new active-project, repository, production-domain, and Supabase requirements against the existing BeatBox configuration
+- [x] Compare the new active-project, repository, production-domain, and Supabase requirements against the existing BeatBox configuration
 - [ ] Verify Google OAuth, email auth, profiles, instant seller registration, seller-owned payment settings, and existing marketplace preservation
 - [ ] Verify complete public publishing flows for beats, music, videos, movies, apps, digital products, and physical products
 - [ ] Verify public Feed, discovery, categories, search, creators, trending, new releases, free downloads, and paid-content routes
@@ -157,3 +157,14 @@
 - [ ] Run signed-out, buyer, seller, separate-buyer, and administrator validation plus tests, type checks, linting if configured, production build, and deployment checks
 - [ ] Commit, push, checkpoint, and provide owner-controlled Vercel deployment steps with no secret exposure
 - [x] Implement exact Google verification asset, production robots/sitemap, canonical/OG/Twitter metadata, structured-data hook support, and private-route noindex foundation; add regression coverage and pass tests/typecheck/build
+- [x] Add public discovery aliases for `/discover`, `/categories`, `/trending`, `/new-releases`, `/free-downloads`, `/paid-content`, and `/products`, with search/category filters and route-aware public metadata
+- [x] Add and validate `vercel.json` for frozen pnpm install, Vite output, SPA fallback, serverless API compatibility, and verification asset headers
+- [x] Extend protected creator content types to include movie, app, and digital product publishing where the current database and UI still only accept audio, video, and software
+- [x] Add migration, client model, publishing form, catalog filters, secure preview handling, and regression coverage for the expanded content types
+- [x] Extend Creator Studio publishing form with Movie, App, and Digital Product content types
+- [x] Extend public catalog filters and secure preview rendering for new content types
+- [x] Implement MIME-aware secure previews for movie, app, and digital product content with an unsupported-preview fallback
+- [x] Add behavioral preview regression coverage for the expanded content types
+- [x] Add UI-level regression coverage for secure preview drawer rendering and reset behavior
+- [x] Run final role-based regression validation for visitor, buyer, seller, and admin flows
+- [ ] Synchronize final changes to Aviator and prepare Vercel deployment handoff
