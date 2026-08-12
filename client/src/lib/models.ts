@@ -87,6 +87,7 @@ export type SocialPost = {
   content_id: string | null;
   media_path: string | null;
   media_type: "image" | "audio" | "video" | null;
+  media_gallery?: Array<{ path: string; type: "image" | "audio" | "video" }> | null;
   link_url: string | null;
   status: string;
   like_count: number;

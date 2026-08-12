@@ -12,7 +12,7 @@ const advertiserMigration = readFileSync(resolve(root, "supabase/migrations/2026
 describe("Feed public media and protected asset boundaries", () => {
   it("serves social attachments with public URLs while keeping uploads owner-scoped", () => {
     expect(migration).toContain("where id = 'social-media'");
-    expect(community).toContain("getPublicUrl(post.media_path!)");
+    expect(community).toContain("getPublicUrl(item.path)");
     expect(socialMigration).toContain("for all to authenticated");
     expect(socialMigration).toContain("storage.foldername(name))[1] = auth.uid()::text");
   });

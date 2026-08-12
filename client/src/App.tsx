@@ -20,7 +20,8 @@ const SavedItems = lazy(() => import("@/pages/SavedItems"));
 const Seller = lazy(async () => ({ default: (await import("@/pages/Dashboards")).Seller }));
 const Admin = lazy(async () => ({ default: (await import("@/pages/Dashboards")).Admin }));
 const Community = lazy(() => import("@/pages/Community"));
-const Reels = lazy(() => import("@/pages/Reels"));
+const Reels = lazy(() => import("./pages/Reels"));
+const SearchPage = lazy(() => import("./pages/Search"));
 const MarketCatalog = lazy(() => import("@/pages/MarketCatalog"));
 const CreatorHub = lazy(() => import("@/pages/CreatorHub"));
 const AI = lazy(() => import("@/pages/AI"));
@@ -47,6 +48,7 @@ function Router() {
         <Route path="/feed" component={Community} />
         <Route path="/community" component={Community} />
         <Route path="/reels" component={Reels} />
+        <Route path="/search" component={SearchPage} />
         <Route path="/catalog" component={MarketCatalog} />
         <Route path="/discover" component={MarketCatalog} />
         <Route path="/categories" component={MarketCatalog} />

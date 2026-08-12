@@ -258,14 +258,14 @@
 - [x] Add @mention autocomplete, persisted mention records, mention notifications, and public profile links
 - [x] Add clickable hashtag extraction and discovery/search routing
 - [x] Simplify normal Feed composer to optional text plus optional media without marketplace preview/master requirements
-- [ ] Support single and multiple public Feed image uploads plus direct audio/video uploads without duplicate file requirements
+- [x] Support single and multiple public Feed image uploads plus direct audio/video uploads without duplicate file requirements
 - [x] Build polished BeatBox audio and video media players with responsive controls and safe public downloads
 - [x] Add a lazy-loaded vertical Reels/short-video experience with social actions and mobile optimization
-- [ ] Establish unified desktop three-column and mobile compact/bottom navigation for primary platform sections
+- [x] Establish unified desktop three-column and mobile compact/bottom navigation for primary platform sections
 - [ ] Upgrade creator profiles with cover, identity, verification, tabs, social actions, and content sections
 - [ ] Reorganize Creator Studio into clear Overview, Publish, Content, Products, Payments, Earnings, Orders, Advertising, Analytics, and Settings areas
 - [ ] Improve product, app, service, and digital-product cards with image, seller, price, currency, location, and truthful actions
-- [ ] Extend unified search UI for posts, users, creators, music, beats, videos, reels, products, apps, movies, and hashtags
+- [x] Extend unified search UI for posts, users, creators, music, beats, videos, reels, products, apps, movies, and hashtags
 - [x] Complete notification coverage for likes, comments, replies, mentions, follows, connections, reposts, shares, purchases, and seller activity
 - [x] Verify Feed pagination/infinite loading, lazy media loading, thumbnails, query efficiency, and indexes
 - [x] Trace the exact production AI response-transform error through client, endpoint, Vercel handler, provider response, and parser
@@ -274,5 +274,5 @@
 - [x] Add truthful public-media download/share permissions without weakening paid-content access rules
 - [x] Preserve authentication, seller registration, marketplace, orders, payment requests, storage, RLS, secure downloads, advertising, earnings, and existing notifications
 - [x] Add regression coverage for all newly implemented Feed, Reels, comments, replies, shares, mentions, hashtags, profiles, search, AI, and security requirements
-- [ ] Run full tests, strict TypeScript, production build, responsive screenshots, and owner-controlled production AI smoke verification
+- [x] Run full tests, strict TypeScript, production build, responsive screenshots, and owner-controlled production AI smoke verification
 - [ ] Synchronize the completed upgrade to expoxtechinc/Aviator main and save a final checkpoint
