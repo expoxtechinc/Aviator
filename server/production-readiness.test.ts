@@ -36,6 +36,10 @@ describe("BeatBox production readiness contracts", () => {
     expect(download).toContain("entitlement");
   });
 
+  it("keeps public creator profiles published-only and preserves marketplace routes", () => { const app = read("client/src/App.tsx"); const producer = read("client/src/pages/Producer.tsx"); expect(app).toContain('<Route path="/producers/:id" component={Producer} />'); expect(producer).toContain('get_public_sellers'); expect(producer).toContain("loadPublishedBeats"); expect(producer).toContain("No public beats yet."); expect(producer).not.toContain("content-masters"); expect(producer).not.toContain("payment-proofs"); });
+
+  it("keeps the AI production smoke procedure checked in without embedding provider secrets", () => { const diagnosis = read("docs/PRODUCTION_AI_DIAGNOSIS.md"); expect(diagnosis).toContain("/api/trpc/ai.health"); expect(diagnosis).toContain("authenticated"); expect(diagnosis).toContain("ordered providers"); expect(diagnosis).not.toMatch(/AIza|gsk_|sk-or-v1|Bearer\s+[A-Za-z0-9_-]{20,}/); });
+
   it("keeps creator monetization and admin boundaries server/database backed", () => {
     const studio = read("client/src/pages/CreatorHub.tsx");
     const admin = read("client/src/pages/Dashboards.tsx");
