@@ -1,5 +1,18 @@
 # BeatBox Project TODO
 
+## pasted_content_9 and Feed interaction continuation
+
+- [x] Make normal authenticated community posts public by default with clear public-visibility composer copy
+- [x] Serve ordinary public community images, audio, and video to logged-out visitors without weakening protected marketplace storage
+- [x] Preserve protected paid masters, payment proofs, seller payment details, and administrative assets
+- [x] Add explicit regression verification that seller payment methods remain seller-scoped/private after public social-media migration
+- [x] Add checked-in verification covering administrative/private asset boundaries so only social-media is public
+- [x] Add persistent Feed like/save controls with signed-in authorization and immediate optimistic feedback
+- [x] Add Feed marketplace search with debounced autocomplete suggestions and catalog navigation
+- [x] Add regression coverage for public-post visibility, public media URLs, protected asset boundaries, saves, and autocomplete
+- [x] Run full tests, strict TypeScript, production build, mobile screenshots, and synchronize BeatBox main
+
+
 ## pasted_content_8 production continuation
 
 - [x] Fix Vercel production `/api/trpc` routing so AI requests reach the serverless handler instead of the SPA 404 in source and local Vercel-compatible validation
