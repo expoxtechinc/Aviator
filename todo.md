@@ -1,5 +1,17 @@
 # BeatBox Project TODO
 
+## Saved Items continuation
+
+- [x] Add a protected `/saved` route and navigation entry for signed-in users
+- [ ] Load persisted Feed bookmarks with public post/profile fields only
+- [ ] Filter Saved Items to published/public posts before rendering
+- [ ] Add saved-item filtering, public Feed deep links, and truthful removal states
+- [ ] Add a per-item deep link from each saved bookmark back to its specific public Feed post
+- [ ] Add Saved Items regression coverage and mobile visual validation
+- [ ] Cover Saved Items public-visibility filtering and post deep links in regression tests
+- [ ] Synchronize the Saved Items release to BeatBox/Aviator and checkpoint it
+
+
 ## pasted_content_9 and Feed interaction continuation
 
 - [x] Make normal authenticated community posts public by default with clear public-visibility composer copy

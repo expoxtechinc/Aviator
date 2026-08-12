@@ -16,6 +16,7 @@ const AuthCallback = lazy(() => import("@/pages/AuthCallback"));
 const Cart = lazy(() => import("@/pages/Cart"));
 const Account = lazy(async () => ({ default: (await import("@/pages/Dashboards")).Account }));
 const Favorites = lazy(async () => ({ default: (await import("@/pages/Dashboards")).Favorites }));
+const SavedItems = lazy(() => import("@/pages/SavedItems"));
 const Seller = lazy(async () => ({ default: (await import("@/pages/Dashboards")).Seller }));
 const Admin = lazy(async () => ({ default: (await import("@/pages/Dashboards")).Admin }));
 const Community = lazy(() => import("@/pages/Community"));
@@ -40,6 +41,7 @@ function Router() {
         <Route path="/cart" component={Cart} />
         <Route path="/account" component={Account} />
         <Route path="/favorites" component={Favorites} />
+        <Route path="/saved" component={SavedItems} />
         <Route path="/seller" component={Seller} />
         <Route path="/feed" component={Community} />
         <Route path="/community" component={Community} />
