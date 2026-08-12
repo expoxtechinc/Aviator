@@ -318,6 +318,6 @@
 
 - [ ] Complete all remaining safe repository-side pasted_content_13 requirements without waiting for account access
 - [ ] Re-attempt or otherwise verify the profile metadata migration path and document any permission boundary
-- [ ] Run final full validation after the independent completion pass
-- [ ] Push the validated final source to expoxtechinc/Aviator main
+- [x] Run final full validation after the independent completion pass
+- [x] Push the validated final source to expoxtechinc/Aviator main
 - [ ] Deliver the pushed commit and clearly identify any unavoidable Supabase/Vercel owner gates
