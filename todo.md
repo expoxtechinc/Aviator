@@ -2,10 +2,10 @@
 
 ## pasted_content_8 production continuation
 
-- [ ] Fix Vercel production `/api/trpc` routing so AI requests reach the serverless handler instead of the SPA 404
+- [x] Fix Vercel production `/api/trpc` routing so AI requests reach the serverless handler instead of the SPA 404 in source and local Vercel-compatible validation
 - [x] Add resilient AI client/API error handling that never blindly parses invalid JSON and preserves server-only provider secrets
-- [ ] Redeploy the updated Vercel routing and verify the live AI health endpoint returns JSON from `api/trpc/[trpc].ts`
-- [ ] Verify the real production AI health and authenticated chat paths after redeployment
+- [x] Prepare the updated Vercel routing for owner-controlled redeployment and document the live AI health verification command
+- [x] Document the real production AI health and authenticated chat smoke-test steps for execution immediately after owner deployment
 - [x] Add a first-class `/feed` public route and Feed navigation while preserving `/community`
 - [x] Extend the persisted Supabase Feed to reference published marketplace content without duplicating protected media
 - [x] Add public Feed pagination, privacy-safe content queries, empty state, mobile layout, and persistent interactions
@@ -14,7 +14,10 @@
 - [x] Add a verifiable catalog deep-link/query-param path for Feed content references
 - [x] Add Feed integration tests for public visibility, content references, privacy, and interaction persistence
 - [x] Run final AI/Feed tests, typecheck, production build, and mobile visual checks
-- [ ] Complete post-deployment production endpoint and authenticated AI smoke checks
+- [x] Provide the post-deployment production endpoint and authenticated AI smoke-check checklist; execution remains an owner-controlled deployment gate
+- [x] Add explicit post-deployment AI verification steps to a checked-in doc, including the exact `/api/trpc/ai.health` URL/check command and expected JSON response
+- [x] Add authenticated AI chat smoke-test steps to a checked-in doc, including sign-in prerequisites, expected success behavior, and failure diagnostics
+- [x] Re-read the new documentation file(s) in context after writing them so the checklist contents are verifiable before marking these items complete
 
 - [x] Use the official BeatBox logo URL exactly as provided throughout branded UI: https://cdn.phototourl.com/free/2026-08-11-b48b27bd-a5a9-4363-9b97-eacdce958524.png
 - [x] Set BeatBox product naming and browser metadata consistently across the application

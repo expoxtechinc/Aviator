@@ -13,3 +13,15 @@ The live health endpoint must be rechecked after the owner’s next Vercel deplo
 ## Verification update
 
 The managed local preview now returns a valid JSON tRPC response from `/api/trpc/ai.health`, reporting the ordered providers `gemini`, `groq`, `openrouter`, and `manus`, with all four configured in the managed environment. The public Vercel URL was checked before this source change and returned the SPA 404; it must be checked again after the owner deploys the updated source and Vercel configuration.
+
+## Owner-controlled post-deployment verification
+
+After deploying the current `main` branch to Vercel, verify the serverless tRPC route with the public hostname:
+
+```bash
+curl -i 'https://beat-box-org.vercel.app/api/trpc/ai.health?batch=1&input=%7B%220%22%3A%7B%22json%3Anull%7D%7D'
+```
+
+The response must be JSON with HTTP 200 and a tRPC batch payload containing the health procedure result. An HTML SPA document, Vercel 404, empty body, or JSON parse error indicates a stale deployment or inactive `/api/trpc/:path*` rewrite. Check Vercel runtime logs for `api/trpc/[trpc]` while making the request.
+
+For authenticated chat smoke testing, sign in through configured Google OAuth or email/password, open `/ai`, and send `Give me three Liberian music marketplace discovery tips`. Confirm a normal assistant message renders, the browser request targets `/api/trpc/ai.chat`, and the response is JSON rather than the SPA shell. Repeat with one provider unavailable to confirm ordered fallback; provider keys must remain server-only. If it fails, capture HTTP status, response `content-type`, tRPC `data.code`, and the correlated Vercel runtime-log entry before changing routing or secrets.
