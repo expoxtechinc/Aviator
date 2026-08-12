@@ -22,12 +22,14 @@ describe("BeatBox expanded creator content types", () => {
     const models = read("client/src/lib/models.ts");
     const studio = read("client/src/pages/CreatorHub.tsx");
     const catalog = read("client/src/pages/MarketCatalog.tsx");
+    const community = read("client/src/pages/Community.tsx");
     for (const type of ["movie", "app", "digital_product"]) {
       expect(models).toContain(`"${type}"`);
       expect(studio).toContain(`value="${type}"`);
       expect(catalog).toContain(`value="${type}"`);
     }
     expect(catalog).toContain("resolvePreviewKind");
+    expect(community).toContain("profiles!social_posts_author_id_fkey");
   });
 
   it("renders the correct secure preview state for each media kind", () => {

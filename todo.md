@@ -147,15 +147,16 @@
 ## Full production continuation from pasted_content_7
 
 - [x] Compare the new active-project, repository, production-domain, and Supabase requirements against the existing BeatBox configuration
-- [ ] Verify Google OAuth, email auth, profiles, instant seller registration, seller-owned payment settings, and existing marketplace preservation
-- [ ] Verify complete public publishing flows for beats, music, videos, movies, apps, digital products, and physical products
-- [ ] Verify public Feed, discovery, categories, search, creators, trending, new releases, free downloads, and paid-content routes
-- [ ] Verify persistent social posts, follows, friends, likes, comments, replies, reposts, saves, sharing, notifications, blocks, mutes, reports, and counters
-- [ ] Verify seller payment methods, real Mobile Money and WhatsApp request states, Stripe server-side boundary, unified orders, and entitlement-controlled downloads
-- [ ] Verify advertiser campaigns, creator monetization, dashboards, admin moderation, and audit behavior without fabricated revenue or payment success
-- [ ] Verify exact Google Search Console file, robots.txt, sitemap.xml, canonical/OG/Twitter metadata, structured data, internal links, and private-content noindex rules
-- [ ] Run signed-out, buyer, seller, separate-buyer, and administrator validation plus tests, type checks, linting if configured, production build, and deployment checks
-- [ ] Commit, push, checkpoint, and provide owner-controlled Vercel deployment steps with no secret exposure
+- [x] Verify Google OAuth, email auth, profiles, instant seller registration, seller-owned payment settings, and existing marketplace preservation
+- [x] Verify complete public publishing flows for beats, music, videos, movies, apps, digital products, and physical products
+- [x] Verify public Feed, discovery, categories, search, creators, trending, new releases, free downloads, and paid-content routes
+- [x] Verify persistent social posts, follows, friends, likes, comments, replies, reposts, saves, sharing, notifications, blocks, mutes, reports, and counters
+- [x] Fix the ambiguous social_posts profile relationship in the public community feed
+- [x] Verify seller payment methods, real Mobile Money and WhatsApp request states, Stripe server-side boundary, unified orders, and entitlement-controlled downloads
+- [x] Verify advertiser campaigns, creator monetization, dashboards, admin moderation, and audit behavior without fabricated revenue or payment success
+- [x] Verify exact Google Search Console file, robots.txt, sitemap.xml, canonical/OG/Twitter metadata, structured data, internal links, and private-content noindex rules
+- [x] Run signed-out, buyer, seller, separate-buyer, and administrator validation plus tests, type checks, linting if configured, production build, and deployment checks
+- [x] Commit, push, checkpoint, and provide owner-controlled Vercel deployment steps with no secret exposure
 - [x] Implement exact Google verification asset, production robots/sitemap, canonical/OG/Twitter metadata, structured-data hook support, and private-route noindex foundation; add regression coverage and pass tests/typecheck/build
 - [x] Add public discovery aliases for `/discover`, `/categories`, `/trending`, `/new-releases`, `/free-downloads`, `/paid-content`, and `/products`, with search/category filters and route-aware public metadata
 - [x] Add and validate `vercel.json` for frozen pnpm install, Vite output, SPA fallback, serverless API compatibility, and verification asset headers
@@ -167,4 +168,4 @@
 - [x] Add behavioral preview regression coverage for the expanded content types
 - [x] Add UI-level regression coverage for secure preview drawer rendering and reset behavior
 - [x] Run final role-based regression validation for visitor, buyer, seller, and admin flows
-- [ ] Synchronize final changes to Aviator and prepare Vercel deployment handoff
+- [x] Synchronize final changes to Aviator and prepare Vercel deployment handoff
