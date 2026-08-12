@@ -13,6 +13,8 @@ type AuthState = {
   signInWithGoogle: () => Promise<void>;
   signOut: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
+  signInWithPhone: (phone: string) => Promise<void>;
+  verifyPhoneOtp: (phone: string, token: string) => Promise<void>;
   becomeSeller: () => Promise<void>;
   refreshProfile: () => Promise<void>;
 };
@@ -106,6 +108,14 @@ export function SupabaseAuthProvider({ children }: { children: React.ReactNode }
       },
       resetPassword: async email => {
         const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${window.location.origin}/auth/callback?mode=recovery` });
+        if (error) throw error;
+      },
+      signInWithPhone: async phone => {
+        const { error } = await supabase.auth.signInWithOtp({ phone });
+        if (error) throw error;
+      },
+      verifyPhoneOtp: async (phone, token) => {
+        const { error } = await supabase.auth.verifyOtp({ phone, token, type: "sms" });
         if (error) throw error;
       },
       becomeSeller: async () => {
