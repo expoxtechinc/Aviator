@@ -4,7 +4,6 @@
   "framework": "vite",
   "installCommand": "pnpm install --frozen-lockfile",
   "rewrites": [
-    { "source": "/api/trpc/:path*", "destination": "/api/trpc/[trpc].ts" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [

@@ -10,10 +10,12 @@ describe("Vercel production contract", () => {
     expect(config.buildCommand).toBe("pnpm build");
     expect(config.installCommand).toContain("pnpm install --frozen-lockfile");
     expect(config.outputDirectory).toBe("dist/public");
-    expect(config.rewrites).toEqual(expect.arrayContaining([
-      expect.objectContaining({ source: "/api/trpc/:path*", destination: "/api/trpc/[trpc].ts" }),
+    expect(config.rewrites).toEqual([
       expect.objectContaining({ source: "/(.*)", destination: "/index.html" }),
-    ]));
+    ]);
+    const handler = fs.readFileSync(path.join(root, "api/trpc/[trpc].ts"), "utf8");
+    expect(handler).toContain("createExpressMiddleware");
+    expect(handler).not.toContain('"/api/trpc"');
     const clientTransport = fs.readFileSync(path.join(root, "client/src/main.tsx"), "utf8");
     expect(clientTransport).toContain("content-type");
     expect(clientTransport).toContain("BeatBox AI endpoint is unavailable in this deployment.");

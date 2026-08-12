@@ -1,5 +1,34 @@
 # BeatBox Project TODO
 
+## Final production repair continuation
+
+- [x] Reconcile pasted production specifications and confirm current AI/Feed behavior against the existing implementation
+- [x] Make every AI server response use one explicit success/error JSON contract and harden the client parser for all response classes
+- [ ] Verify real AI provider responses for representative BeatBox questions without fake answers or exposed secrets
+- [x] Upgrade public Feed into a responsive social layout with clear composer, consistent post cards, discovery sections, and public media states
+- [x] Add public image lightbox/gallery and robust inline audio/video players without exposing protected marketplace masters
+- [x] Render beat, product, app, movie, link, text, image, audio, and video references with safe typed UI states
+- [ ] Verify persistent likes, comments, replies, shares, reposts, saves, follows, reports, notifications, and duplicate-action prevention
+- [x] Expand search/discovery for creators, beats, music, videos, movies, products, apps, and posts with useful loading/error/empty states
+- [ ] Verify public creator profiles show only public content and preserve existing marketplace routes
+- [x] Add visible discovery-section error handling and success/empty/error regression coverage
+- [x] Add component tests for discovery success, empty, and error states
+- [x] Implement differentiated safe Feed cards for beats, products, apps, and movies with per-type regression coverage
+- [x] Add clearer per-type visual/state differences to attached Feed reference cards
+- [x] Add per-type component assertions for beat, product, app, and movie cards
+- [x] Add component tests for attached Feed references across beat, digital product, app, and movie content
+- [x] Add component-level autocomplete loading, empty, and error-state coverage
+- [x] Add component coverage for the visible autocomplete Searching state
+- [x] Add explicit Feed discovery sections/cards beyond autocomplete
+- [x] Add distinct safe UI states for beat, product, app, movie, and link references
+- [x] Add autocomplete error handling and explicit zero-result state with regression coverage
+- [x] Add regression coverage for public media lightbox/error states, typed content-reference cards, and creator/post autocomplete
+- [x] Fix Community component-test Supabase mock support for the new discovery `.limit()` query
+- [x] Run final full regression, production build, and desktop/mobile Feed screenshots
+- [ ] Run owner-controlled production AI provider and authenticated-chat smoke checks after Vercel redeployment
+
+- [x] Use the official BeatBox logo URL exactly as provided throughout branded UI: https://cdn.phototourl.com/free/2026-08-11-b48b27bd-a5a9-4363-9b97-eacdce958524.png
+
 ## Saved Items continuation
 
 - [x] Add a protected `/saved` route and navigation entry for signed-in users
