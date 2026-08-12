@@ -10,8 +10,10 @@ describe("Vercel production contract", () => {
     expect(config.buildCommand).toBe("pnpm build");
     expect(config.installCommand).toContain("pnpm install --frozen-lockfile");
     expect(config.outputDirectory).toBe("dist/public");
-    expect(config.rewrites).toEqual([
-      expect.objectContaining({ source: "/(.*)", destination: "/index.html" }),
+    expect(config.routes).toEqual([
+      expect.objectContaining({ src: "/api/(.*)", dest: "/api/$1" }),
+      expect.objectContaining({ handle: "filesystem" }),
+      expect.objectContaining({ src: "/(.*)", dest: "/index.html" }),
     ]);
     const handler = fs.readFileSync(path.join(root, "api/trpc/[trpc].ts"), "utf8");
     expect(handler).toContain("createExpressMiddleware");

@@ -329,3 +329,13 @@
 - [x] Push the latest validated source to expoxtechinc/Aviator main
 - [x] Check beat-box-org.vercel.app live reachability and deployment readiness
 - [x] Deliver the pushed commit and identify any Vercel/Supabase owner-controlled gates
+
+
+## Vercel deployment diagnosis and repair
+
+- [ ] Inspect Aviator HEAD, branch protection, Vercel project linkage, and deployment configuration
+- [ ] Compare live Vercel deployment commit and routes with the latest Aviator source
+- [ ] Identify and fix any build, routing, ignored-file, environment, or branch synchronization issue under repository control
+- [ ] Verify the live deployment exposes the latest Feed, Messages, Reels, Search, Studio, and AI routes
+- [ ] Run deployment-facing validation and document any owner-only Vercel/Supabase gates
+- [ ] Revoke/rotate the classic GitHub token pasted in chat and never commit or store it
