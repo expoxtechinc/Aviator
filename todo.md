@@ -304,7 +304,7 @@
 - [x] Audit all profile, post, reaction, follower, message, media, music, video, product, order, payment, report, notification, and admin RLS policies
 - [ ] Complete notification coverage for messages, reactions, replies, mentions, reposts, follows, payments, orders, seller activity, admin warnings, and report status
 - [ ] Verify follow, friend/connect, remove connection, block, and mute behavior prevents prohibited interactions
-- [ ] Add rights/ownership acknowledgement and moderation-safe publishing language without claiming ownership of uploads
+- [x] Add rights/ownership acknowledgement and moderation-safe publishing language without claiming ownership of uploads
 - [x] Verify AI endpoint always returns valid JSON on success, non-2xx, timeout, malformed provider response, and production runtime failure
 - [x] Verify Google verification file, SEO metadata, canonical URLs, robots, sitemap, structured data, and public SEO routes for beats, music, videos, creators, products, community, and marketplace
 - [x] Optimize media loading, pagination/infinite scrolling, caching, thumbnails, and database indexes without weakening privacy
@@ -312,3 +312,12 @@
 - [ ] Add full regression coverage for phone auth states, profile persistence/privacy, messaging boundaries, reaction types, video behavior, analytics, RLS, AI error contracts, SEO, and infinite media behavior
 - [ ] Run complete auth, profile, social, messaging, music, video, marketplace, admin, AI, SEO, typecheck, test, build, and responsive verification
 - [ ] Commit the completed changes to the active BeatBox repository without importing an old repository and save a final checkpoint
+
+
+## User-directed independent completion and push
+
+- [ ] Complete all remaining safe repository-side pasted_content_13 requirements without waiting for account access
+- [ ] Re-attempt or otherwise verify the profile metadata migration path and document any permission boundary
+- [ ] Run final full validation after the independent completion pass
+- [ ] Push the validated final source to expoxtechinc/Aviator main
+- [ ] Deliver the pushed commit and clearly identify any unavoidable Supabase/Vercel owner gates
