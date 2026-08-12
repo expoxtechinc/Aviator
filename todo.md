@@ -321,3 +321,11 @@
 - [x] Run final full validation after the independent completion pass
 - [x] Push the validated final source to expoxtechinc/Aviator main
 - [ ] Deliver the pushed commit and clearly identify any unavoidable Supabase/Vercel owner gates
+
+
+## Live domain synchronization request
+
+- [ ] Verify current BeatBox branch, remote, and latest validated commit
+- [ ] Push the latest validated source to expoxtechinc/Aviator main
+- [ ] Check beat-box-org.vercel.app live reachability and deployment readiness
+- [ ] Deliver the pushed commit and identify any Vercel/Supabase owner-controlled gates
