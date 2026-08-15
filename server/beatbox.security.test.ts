@@ -44,12 +44,23 @@ describe("BeatBox secure download boundary", () => {
     expect(paymentPanel).toMatch(/Mobile Money|Orange Money|WhatsApp/i);
   });
 
-  it("requires uploaded audio previews to be 30–60 seconds long", async () => {
+  it("keeps a private master separate from the public playback copy", async () => {
     const dashboards = await source("client/src/pages/Dashboards.tsx");
+    const marketplace = await source("client/src/lib/marketplace.ts");
+    const guestStream = await source("supabase/functions/guest-stream/index.ts");
 
-    expect(dashboards).toContain("getAudioDuration(preview)");
-    expect(dashboards).toContain("seconds < 30 || seconds > 60");
-    expect(dashboards).toContain("Watermarked previews must be between 30 and 60 seconds long.");
+    expect(dashboards).toContain("const [cover, setCover]");
+    expect(dashboards).toContain("const [beatFile, setBeatFile]");
+    expect(dashboards).toContain("title");
+    expect(dashboards).not.toContain("const [previewFile, setPreviewFile]");
+    expect(dashboards).toContain("separate full-length guest stream");
+    expect(dashboards).toContain('upload("beat-masters", beatFile, "beat")');
+    expect(dashboards).toContain('upload("beat-previews", beatFile, "stream")');
+    expect(marketplace).toContain("controlled guest-stream function");
+    expect(marketplace).not.toContain('"beat-masters").createSignedUrl');
+    expect(guestStream).toContain('eq("status", "published")');
+    expect(guestStream).toContain("createSignedUrl(path, 120)");
+    expect(marketplace).toContain("requestSecureDownload");
   });
 
   it("keeps trigger helpers private and exposes only reviewed authenticated payment and tag RPCs", async () => {

@@ -17,8 +17,11 @@ export type Profile = {
   social_links?: Record<string, string> | null;
   privacy_settings?: Record<string, boolean> | null;
   contact_preferences?: Record<string, boolean> | null;
+  whatsapp_number?: string | null;
+  whatsapp_public?: boolean | null;
   role: UserRole | null;
   account_status: "active" | "suspended" | "banned" | null;
+  professional_mode?: boolean | null;
 };
 
 export type Beat = {
@@ -41,6 +44,9 @@ export type Beat = {
   license_info: string | null;
   status: "draft" | "published" | "archived" | "removed" | null;
   play_count: number | null;
+  view_count?: number | null;
+  like_count?: number | null;
+  comment_count?: number | null;
   favorite_count: number | null;
   download_count: number | null;
   created_at: string | null;
@@ -61,7 +67,7 @@ export type BeatLicense = {
 
 export type Category = { id: string; name: string; slug: string };
 
-export type ContentType = "audio" | "video" | "movie" | "software" | "app" | "digital_product";
+export type ContentType = "audio" | "video" | "movie" | "software" | "app" | "digital_product" | "plugin" | "soundboard" | "soundtrack" | "loop" | "sample_pack" | "engineering_file";
 export type AccessMode = "free_download" | "paid_download" | "stream_only";
 
 export type ContentItem = {
@@ -99,11 +105,13 @@ export type SocialPost = {
   media_gallery?: Array<{ path: string; type: "image" | "audio" | "video" }> | null;
   link_url: string | null;
   status: string;
+  audience?: "public" | "friends" | "only_me" | null;
+  thumbnail_path?: string | null;
   like_count: number;
   comment_count: number;
   share_count: number;
   created_at: string;
-  profiles?: { display_name: string | null; avatar_url: string | null } | null;
+  profiles?: { display_name: string | null; avatar_url: string | null; username?: string | null; professional_mode?: boolean | null } | null;
 };
 
 export type Product = {

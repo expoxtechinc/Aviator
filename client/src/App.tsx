@@ -5,6 +5,7 @@ import { lazy, Suspense } from "react";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { isSupabaseConfigured, supabaseConfigurationMessage } from "./lib/supabase";
 
 const Home = lazy(() => import("./pages/Home"));
 const Explore = lazy(() => import("@/pages/Explore"));
@@ -17,6 +18,7 @@ const Cart = lazy(() => import("@/pages/Cart"));
 const Account = lazy(async () => ({ default: (await import("@/pages/Dashboards")).Account }));
 const Favorites = lazy(async () => ({ default: (await import("@/pages/Dashboards")).Favorites }));
 const SavedItems = lazy(() => import("@/pages/SavedItems"));
+const Profile = lazy(() => import("@/pages/Profile"));
 const Seller = lazy(async () => ({ default: (await import("@/pages/Dashboards")).Seller }));
 const Admin = lazy(async () => ({ default: (await import("@/pages/Dashboards")).Admin }));
 const Community = lazy(() => import("@/pages/Community"));
@@ -45,6 +47,7 @@ function Router() {
         <Route path="/account" component={Account} />
         <Route path="/favorites" component={Favorites} />
         <Route path="/saved" component={SavedItems} />
+        <Route path="/profile" component={Profile} />
         <Route path="/seller" component={Seller} />
         <Route path="/feed" component={Community} />
         <Route path="/community" component={Community} />
@@ -85,6 +88,11 @@ function App() {
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
+          {!isSupabaseConfigured && (
+            <div className="deployment-notice" role="status">
+              <strong>BeatBox setup required.</strong> {supabaseConfigurationMessage}
+            </div>
+          )}
           <Router />
         </TooltipProvider>
       </ThemeProvider>
